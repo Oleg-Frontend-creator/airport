@@ -4,7 +4,7 @@
   "description": "minify and build production ",
   "main": "gulpfile.js",
   "scripts": {
-    "build": "gulp concat-styles concat-scripts-index concat-scripts-advantages move-files"
+    "build": "gulp build"
   },
   "author": "Oleg",
   "license": "ISC",
@@ -17,6 +17,9 @@
     "gulp-copy": "^5.0.0",
     "gulp-less": "^5.0.0",
     "gulp-minify": "^3.1.0",
-    "gulp-rename": "^2.0.0"
+    "gulp-rename": "^2.1.0",
+    "gulp-sass": "^6.0.1",
+    "merge-stream": "^2.0.0",
+    "sass": "^1.94.2"
   }
 }

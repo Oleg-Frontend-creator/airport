@@ -1,29 +1,53 @@
 <?php
-//проверяем тип запроса, обрабатываем только POST
-if ($_SERVER ["REQUEST_METHOD"] = "POST") {
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-    // Получаем параметры, посланные с javascript
-    $name = $_POST['name'];
-    $phone = $_POST ['phone'];
-    $email = $_POST['email'];
-    // создаем переменную с содержанием письма
-    $content = $name . ' оставил заявку на звонок по поводу трудоустройства на должность контролера ПК.' . 'Его телефон: ' . $phone .', его e-mail: ' . $email;
-
-    // Первый параметр - кому отправляем письмо, второй - тема письма, третий - содержание
-    $success = mail("dmd_passport_control@mail.ru", 'Заявка на обратный звонок', $content);
-
-    if ($success) {
-        // отдаем 200 код ответа на http запрос
-        http_response_code (200);
-        echo "Письмо отправлено";
-    } else {
-        // Отдаем ошибку с кодом 500 (internal server error).
-        http_response_code (500);
-        echo "Письмо не отправлено";
-    }
-
-} else {
-    // Если это не POST запрос - возвращаем код 403 (действие запрещено)
+// Обрабатываем только POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(403);
-    echo "Данный метод запроса не поддерживается сервером";
+    echo 'Данный метод запроса не поддерживается сервером';
+    exit;
+}
+
+// Данные
+$name  = isset($_POST['name'])  ? trim($_POST['name'])  : '';
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+$email = isset($_POST['email']) ? trim($_POST['email']) : '';
+
+// На всякий случай — если вообще ничего не пришло
+if ($name === '' && $phone === '' && $email === '') {
+    http_response_code(400);
+    echo 'Пустой запрос';
+    exit;
+}
+
+// Текст письма
+$content =
+    "{$name} оставил заявку на звонок по поводу трудоустройства на должность контролера ПК.\r\n" .
+    "Телефон: {$phone}\r\n" .
+    "E-mail: {$email}";
+
+// Тема
+$subject = "Заявка на обратный звонок";
+$subjectEnc = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+
+// Имя отправителя
+$fromName = "Сайт Passport Control";
+$fromNameEnc = "=?UTF-8?B?" . base64_encode($fromName) . "?=";
+
+// Заголовки
+$headers  = "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "Content-Transfer-Encoding: 8bit\r\n";
+$headers .= "From: {$fromNameEnc} <no-reply@dmdpassport.ru>\r\n";
+
+// Отправка
+$success = mail("dmd_passport_control@mail.ru", $subjectEnc, $content, $headers);
+
+if ($success) {
+    http_response_code(200);
+    echo "Письмо отправлено";
+} else {
+    http_response_code(500);
+    echo "Письмо не отправлено";
 }

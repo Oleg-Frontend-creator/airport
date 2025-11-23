@@ -1,27 +1,47 @@
 <?php
-//проверяем тип запроса, обрабатываем только POST
-if ($_SERVER ["REQUEST_METHOD"] = "POST") {
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
-    // Получаем параметры, посланные с javascript
-    $email = $_POST['email'];
-    // создаем переменную с содержанием письма
-    $content = 'E-mail для получения документа с условиями на почту: ' . $email;
-
-    // Первый параметр - кому отправляем письмо, второй - тема письма, третий - содержание
-    $success = mail("dmd_passport_control@mail.ru", 'Заявка на получение документа', $content);
-
-    if ($success) {
-        // отдаем 200 код ответа на http запрос
-        http_response_code (200);
-        echo "Письмо отправлено";
-    } else {
-        // Отдаем ошибку с кодом 500 (internal server error).
-        http_response_code (500);
-        echo "Письмо не отправлено";
-    }
-
-} else {
-    // Если это не POST запрос - возвращаем код 403 (действие запрещено)
+// Обрабатываем только POST
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(403);
-    echo "Данный метод запроса не поддерживается сервером";
+    echo 'Данный метод запроса не поддерживается сервером';
+    exit;
+}
+
+// Принимаем параметры
+$email = isset($_POST['email']) ? trim($_POST['email']) : '';
+
+if ($email === '') {
+    http_response_code(400);
+    echo 'E-mail не передан';
+    exit;
+}
+
+// Текст письма
+$content = "E-mail для получения документа с условиями на почту: {$email}";
+
+// Тема
+$subject = "Заявка на получение документа";
+$subjectEnc = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+
+// Отправитель
+$fromName = "Сайт Passport Control";
+$fromNameEnc = "=?UTF-8?B?" . base64_encode($fromName) . "?=";
+
+// Заголовки
+$headers  = "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "Content-Transfer-Encoding: 8bit\r\n";
+$headers .= "From: {$fromNameEnc} <no-reply@dmdpassport.ru>\r\n";
+
+// Отправка
+$success = mail("dmd_passport_control@mail.ru", $subjectEnc, $content, $headers);
+
+if ($success) {
+    http_response_code(200);
+    echo "Письмо отправлено";
+} else {
+    http_response_code(500);
+    echo "Письмо не отправлено";
 }

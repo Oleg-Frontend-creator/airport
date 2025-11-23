@@ -1,0 +1,739 @@
+@import "common.scss";
+
+.section-title {
+  margin-bottom: 50px;
+
+  span {
+    color: #ffffff;
+    display: block;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 25px;
+
+    &:after {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 5px;
+      width: 70px;
+      background: #fff;
+      content: "";
+    }
+  }
+}
+
+.advantages {
+  background-size: cover;
+  padding-bottom: 60px;
+  padding-top: 110px;
+
+  .advantages__title {
+    .primary-btn {
+      width: 354px;
+      text-align: center;
+    }
+
+    p {
+      margin-bottom: 45px;
+      color: #f3f3f3;
+    }
+  }
+
+  .advantages_telegram {
+    text-align: center;
+    margin-top: 20px;
+
+    h2 {
+      color: #ffffff;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 25px;
+      font-size: 28px;
+    }
+
+    .advantages_telegram-img {
+      width: 80%;
+    }
+  }
+
+  .advantages__item {
+    margin-bottom: 45px;
+
+    &:hover .advantages__item__icon:after {
+      transform: rotate(45deg);
+    }
+
+    .advantages__item__icon {
+      position: relative;
+      height: 70px;
+      width: 70px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #fff;
+        content: "";
+        -webkit-transition: all, .5s;
+        -o-transition: all, .5s;
+        transition: all, .5s;
+      }
+
+      .advantages__item__svg {
+        width: 45px;
+      }
+    }
+
+    h4 {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 26px;
+      margin-bottom: 18px;
+    }
+
+    p {
+      margin-bottom: 0;
+      color: #f3f3f3;
+    }
+  }
+}
+
+.vacancy {
+  position: relative;
+
+  .vacancy__slider {
+    &.owl-carousel {
+      .owl-item.active .vacancy__text {
+        span, h2, .primary-btn {
+          top: 0;
+          opacity: 1;
+        }
+      }
+
+      .owl-dots {
+        position: absolute;
+        left: 70px;
+        right: 0;
+        bottom: 220px;
+        max-width: 1140px;
+        margin: 0 auto;
+
+        button {
+          color: #5e5e5e;
+          font-size: 18px;
+          font-family: "Play", sans-serif;
+          margin-right: 16px;
+          position: relative;
+          display: inline-block;
+
+          &.active {
+            color: #ffffff;
+
+            &:after {
+              background: #ffffff;
+              height: 2px;
+            }
+          }
+
+          &:after {
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            content: "";
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      .vacancy__item {
+        height: 800px;
+        padding-top: 255px;
+
+        .vacancy__text {
+          span {
+            color: #ffffff;
+            display: block;
+            font-size: 15px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+            position: relative;
+            top: 100px;
+            opacity: 0;
+            -webkit-transition: all, 0.3s;
+            -o-transition: all, 0.3s;
+            transition: all, 0.3s;
+          }
+
+          h2 {
+            color: #ffffff;
+            font-size: 47px;
+            font-weight: 700;
+            line-height: 70px;
+            text-transform: uppercase;
+            margin-bottom: 38px;
+            position: relative;
+            top: 100px;
+            opacity: 0;
+            -webkit-transition: all, 0.5s;
+            -o-transition: all, 0.5s;
+            transition: all, 0.5s;
+          }
+
+          .primary-btn {
+            position: relative;
+            top: 100px;
+            width: 460px;
+            opacity: 0;
+            -webkit-transition: all, 0.7s;
+            -o-transition: all, 0.7s;
+            transition: all, 0.7s;
+          }
+        }
+      }
+    }
+  }
+
+  .vacancy__img {
+    position: absolute;
+    z-index: 8;
+    right: 300px;
+    top: 170px;
+    height: 500px;
+    width: auto;
+  }
+}
+
+.airport {
+  overflow: hidden;
+  background: #4a4654;
+
+  .airport__gallery {
+    margin-right: -10px;
+
+    .grid-sizer {
+      width: calc(16.67% - 10px);
+    }
+
+    .airport__item {
+      width: calc(16.67% - 10px);
+      margin-right: 10px;
+      margin-bottom: 10px;
+      float: left;
+      position: relative;
+      overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+
+      &:hover .airport__item__hover {
+        bottom: 0;
+      }
+
+      &.large__item {
+        height: calc(100% - 10px);
+        width: calc(33.33% - 10px);
+      }
+
+      &.wide__item {
+        width: calc(33.33% - 10px);
+        height: calc(50% - 10px);
+      }
+
+      .play-btn {
+        display: inline-block;
+        color: #ffffff;
+        font-size: 20px;
+        height: 50px;
+        width: 50px;
+        line-height: 50px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+      }
+
+      .airport__item__hover {
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        left: 0;
+        bottom: -300px;
+        width: 100%;
+        padding: 25px 30px 20px;
+        -webkit-transition: all, 0.5s;
+        -o-transition: all, 0.5s;
+        transition: all, 0.5s;
+
+        h4 {
+          font-size: 20px;
+          color: #ffffff;
+          font-weight: 700;
+        }
+
+        ul li {
+          color: #adadad;
+          list-style: none;
+          font-size: 16px;
+          margin-right: 23px;
+          position: relative;
+          display: inline-block;
+
+          &:after {
+            position: absolute;
+            right: -18px;
+            top: 1px;
+            content: "/";
+          }
+
+          &:last-child {
+            margin-right: 0;
+
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.requirements {
+  padding: 110px 0 80px 0;
+  position: relative;
+
+  .container {
+    text-align: center;
+
+    .requirements__title {
+      &.gray-color h2 {
+        color: #4f4a4a;
+        border-color: #4f4a4a;
+      }
+
+      h2 {
+        font-size: 42px;
+      }
+    }
+
+    .requirements__items {
+      margin-top: 88px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .requirements__item {
+        border: 3px solid #333333;
+        border-radius: 10px;
+        width: 340px !important;
+        height: 162px;
+        box-sizing: border-box;
+        margin: 0 20px;
+        position: relative;
+        z-index: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .5s;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+
+        &.gray-color, .requirements__title.gray-color h2 {
+          color: #4f4a4a;
+          border-color: #4f4a4a;
+        }
+
+        .requirements__item-number {
+          left: calc(50% - 30px);
+          font-size: 60px;
+          position: absolute;
+          line-height: 40px;
+          top: -50px;
+          width: 60px;
+          text-align: center;
+        }
+
+        .requirements__item-text {
+          margin: 0 9px;
+          width: 245px;
+          font-size: 20px;
+          line-height: 1.5;
+          text-align: center;
+        }
+      }
+    }
+
+    .requirements__items-small-screen {
+      width: 290px;
+      border: 2px solid #333333;
+      border-radius: 10px;
+      padding: 15px 10px;
+      margin: 40px auto 0 auto;
+      transition: all .5s;
+      display: none;
+
+      p {
+        color: #272828;
+        text-align: start;
+        line-height: unset;
+        margin-bottom: 10px;
+      }
+
+      span {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .vacancy .vacancy__img {
+    right: 130px;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .vacancy .vacancy__img {
+    height: 400px;
+  }
+
+  .airport .airport__gallery .airport__item:hover .airport__item__hover {
+    padding: 15px 20px 10px;
+
+    h4 {
+      font-size: 16px;
+    }
+
+    p {
+      font-size: 12px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .vacancy .vacancy__slider.owl-carousel .vacancy__item .vacancy__text h2 {
+    font-size: 40px;
+    line-height: 55px;
+  }
+
+  .requirements .container {
+    .requirements__items {
+      display: none;
+    }
+
+    .requirements__items-small-screen {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .advantages .advantages__title .primary-btn {
+    width: 310px;
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .vacancy .vacancy__img {
+    height: 270px;
+    top: 130px;
+    right: 70px;
+  }
+
+  .advantages {
+    .col-lg-4 {
+      display: grid;
+      grid-template-columns: 330px 1fr;
+      grid-template-rows: 400px;
+    }
+
+    .advantages_telegram {
+      padding: 0 55px;
+
+      .advantages_telegram-img {
+        width: unset;
+        height: 60%;
+      }
+    }
+
+    .primary-btn {
+      margin-bottom: 30px;
+    }
+  }
+
+  .vacancy__item {
+    padding-top: 150px;
+    height: 500px;
+  }
+
+  .vacancy__slider.owl-carousel .owl-dots {
+    max-width: 930px !important;
+    bottom: 100px;
+  }
+}
+
+@media screen and (max-width: 856px) {
+  .advantages .advantages_telegram {
+    padding: 0 15px 0 55px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .advantages_telegram-img {
+      width: unset;
+      height: 60%;
+    }
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .vacancy {
+    .vacancy__img {
+      height: 240px;
+      left: 490px;
+      top: 270px;
+    }
+
+    .vacancy__slider.owl-carousel .vacancy__item .vacancy__text .primary-btn {
+      width: 310px;
+    }
+  }
+
+  .vacancy__slider.owl-carousel .owl-dots {
+    max-width: 690px !important;
+  }
+
+  .advantages {
+    padding-top: 50px;
+
+    .primary-btn {
+      max-width: 400px;
+    }
+
+    .advantages__title {
+      margin-bottom: 50px;
+      max-width: unset;
+    }
+
+    .advantages__item p {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  .requirements .container {
+    padding-top: 60px;
+
+    .requirements__title h2 {
+      font-size: 32px;
+    }
+
+    .requirements__items {
+      display: none;
+    }
+
+    .requirements__items-small-screen {
+      display: block;
+    }
+  }
+
+  .advantages .advantages__title {
+    margin-bottom: 50px;
+
+    h2 {
+      font-size: 26px;
+    }
+
+    a {
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+
+  .vacancy .vacancy__slider.owl-carousel {
+    .owl-dots {
+      left: 30px;
+    }
+
+    .vacancy__item .vacancy__text {
+      h2 {
+        font-size: 26px;
+        line-height: 26px;
+      }
+
+      span {
+        font-size: 12px;
+      }
+
+      .primary-btn {
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .airport .airport__gallery {
+    .grid-sizer {
+      width: calc(50% - 10px);
+    }
+
+
+    .airport__item {
+      width: calc(50% - 10px);
+
+      &.wide__item {
+        width: calc(50% - 10px);
+        height: unset;
+      }
+
+      &.small__item {
+        height: unset;
+      }
+
+      &.large__item {
+        width: calc(50% - 10px);
+        height: 853px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 705px) {
+  .advantages .container .advantages_telegram {
+    padding: 0 15px 0 15px;
+
+    h2 {
+      font-size: 16px;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .vacancy .vacancy__img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .advantages .container {
+    .col-lg-4 {
+      display: unset;
+      max-width: 400px;
+    }
+
+    .advantages_telegram {
+      padding: unset;
+      text-align: left;
+
+      h2 {
+        width: 310px;
+      }
+
+      .advantages_telegram-img {
+        height: 250px;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .requirements .container .requirements__title h2 {
+    font-size: 24px;
+  }
+
+  .advantages .primary-btn {
+    font-size: 13px;
+  }
+
+  .vacancy .vacancy__slider.owl-carousel .vacancy__item .vacancy__text {
+    h2 {
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .primary-btn {
+      font-size: 10px;
+      width: 90% !important;
+    }
+  }
+
+  .airport .airport__gallery {
+    margin-right: 0;
+
+    .grid-sizer {
+      width: 100%;
+    }
+
+
+    .airport__item {
+      width: 100%;
+      margin-right: 0;
+
+      &.wide__item {
+        width: 100%;
+      }
+
+      &.large__item {
+        width: 100%;
+      }
+    }
+  }
+
+  .advantages .primary-btn {
+    min-width: 290px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .advantages .container {
+    .advantages__title .primary-btn {
+      font-size: 12px;
+      letter-spacing: 1px;
+      padding-left: 20px;
+      width: 280px;
+      padding-right: 20px;
+    }
+    .advantages_telegram h2 {
+       width: unset;
+     }
+  }
+}

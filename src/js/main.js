@@ -6,35 +6,6 @@
     $(window).on('load', function () {
         $('.loader').fadeOut();
         $('#preloder').delay(200).fadeOut('slow');
-    });
-
-    /* ---------------------- DOM READY ---------------------- */
-    $(function () {
-
-        /* ---------- BG IMAGES (data-bgset) ---------- */
-        $('.bg-set-with-filter').each(function () {
-            const bg = $(this).data('bgset');
-
-            $(this).css(
-                'background-image',
-                'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + bg + ')'
-            );
-        });
-
-        $('.bg-set').each(function () {
-            const bg = $(this).data('bgset');
-
-            $(this).css('background-image', 'url(' + bg + ')');
-        });
-
-        /* ---------- AIRPORT GALLERY (MASONRY) ---------- */
-        if ($('.airport__gallery').length) {
-            $('.airport__gallery').masonry({
-                itemSelector: '.airport__item',
-                columnWidth: '.grid-sizer',
-                gutter: 10
-            });
-        }
 
         /* ---------- VACANCY SLIDER (OWL CAROUSEL) ---------- */
         if ($('.vacancy__slider').length) {
@@ -49,6 +20,7 @@
                 items: 1,
                 margin: 0,
                 smartSpeed: 1200,
+                autoplayTimeout: 15000,
                 autoHeight: false,
                 autoplay: true
             });
@@ -94,6 +66,8 @@
             window.addEventListener('scroll', updateTimeline);
         }
 
+        /* ---------- WOW JS ---------- */
+        new WOW({animateClass: 'animate__animated'}).init();
         /* ---------- SMOOTH SCROLL FOR ANCHORS ---------- */
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -106,13 +80,6 @@
                 target.scrollIntoView({behavior: 'smooth'});
             });
         });
-
-        /* ---------- WOW.JS ---------- */
-        if (typeof WOW !== 'undefined') {
-            new WOW({
-                animateClass: 'animate__animated'
-            }).init();
-        }
 
         /* ---------- MODAL FORM (CALLBACK) ---------- */
         const $nameInputModal = $('#nameInputModal');
@@ -236,28 +203,6 @@
                 }
             });
         })
-        /* ---------- BURGER MENU ---------- */
-        const $menu = $('.header__menu');
-        const $burger = $('#burger-menu');
-        const $menuItems = $('.header__menu-items');
-        const $links = $('.header__link');
-
-        $burger.on('click', function () {
-            const isOpen = $burger.is(':checked');
-
-            $menu.toggleClass('open', isOpen);
-            $menuItems.toggleClass('open', isOpen);
-            $(document.body).css('overflow', isOpen ? 'hidden' : 'unset');
-        });
-
-        $links.on('click', function () {
-            $menu.removeClass('open');
-            $menuItems.removeClass('open');
-            if ($burger.is(':checked')) {
-                $burger.prop('checked', false).trigger('change');
-            }
-            $(document.body).css('overflow', 'unset');
-        });
 
         /* ---------- ADVANTAGES SWIPER ---------- */
         if ($('.advantages__swiper').length && typeof Swiper !== 'undefined') {
@@ -284,6 +229,63 @@
                 }
             });
         }
+    });
 
+    /* ---------------------- DOM READY ---------------------- */
+    $(function () {
+        /* ---------- BG IMAGES (data-bgset) ---------- */
+        $('.bg-set-with-filter').each(function () {
+            const bg = $(this).data('bgset');
+
+            $(this).css(
+                'background-image',
+                'linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(' + bg + ')'
+            );
+        });
+
+        $('.bg-set').each(function () {
+            const bg = $(this).data('bgset');
+
+            $(this).css('background-image', 'url(' + bg + ')');
+        });
+
+        /* ---------- AIRPORT GALLERY (MASONRY) ---------- */
+        if ($('.airport__gallery').length) {
+            const $gallery = $('.airport__gallery');
+
+            $gallery.masonry({
+                itemSelector: '.airport__item',
+                columnWidth: '.grid-sizer',
+                gutter: 10
+            });
+
+            $(window).on("resize", function () {
+                $gallery.masonry('layout')
+            });
+
+        }
+
+        /* ---------- BURGER MENU ---------- */
+        const $menu = $('.header__menu');
+        const $burger = $('#burger-menu');
+        const $menuItems = $('.header__menu-items');
+        const $links = $('.header__link');
+
+        $burger.on('click', function () {
+            const isOpen = $burger.is(':checked');
+
+            $menu.toggleClass('open', isOpen);
+            $menuItems.toggleClass('open', isOpen);
+            $(document.body).css('overflow', isOpen ? 'hidden' : 'unset');
+        });
+
+        $links.on('click', function () {
+            $menu.removeClass('open');
+            $menuItems.removeClass('open');
+            if ($burger.is(':checked')) {
+                $burger.prop('checked', false).trigger('change');
+            }
+            $(document.body).css('overflow', 'unset');
+        });
     }); // end of DOM ready
 })(jQuery);
